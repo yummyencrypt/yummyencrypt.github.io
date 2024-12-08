@@ -1,0 +1,70 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ENCRYPTORR</title>
+    </head>
+    <body>
+        Decrypted text<br>
+        <textarea style="width:200px;height:200px;" id="decrypt" oninput="encrypt()"></textarea><br>
+        Encrypted text<br>
+        <textarea style="width:200px;height:200px;" id="encrypt" oninput="decrypt()"></textarea>
+    </body>
+</html>
+
+<script>
+
+    function encrypt() {
+
+        let oldT = document.getElementById("decrypt").value;
+
+        let temp1 = "";
+
+        for (let i in oldT) {
+
+            let c = oldT[i].charCodeAt();
+
+            if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) {
+
+                temp1 += String.fromCharCode(c+1);
+
+            } else { temp1 += String.fromCharCode(c); }
+
+        }
+
+        document.getElementById("encrypt").value = rStr(temp1);
+
+    }
+
+    function decrypt() {
+
+        let oldT = rStr(document.getElementById("encrypt").value);
+
+        let temp1 = "";
+
+        for (let i in oldT) {
+
+            let c = oldT[i].charCodeAt();
+
+            if ((c >= 66 && c <= 91) || (c >= 98 && c <= 123)) {
+
+                temp1 += String.fromCharCode(c-1);
+
+            } else { temp1 += String.fromCharCode(c); }
+
+        }
+
+        document.getElementById("decrypt").value = temp1;
+
+    }
+
+    function rStr(str) {
+
+        var splitString = str.split("");
+        var reverseArray = splitString.reverse();
+        var joinArray = reverseArray.join("");
+        return joinArray;
+
+    } 
+
+</script>
